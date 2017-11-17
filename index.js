@@ -14,6 +14,7 @@ app.set('frontend', (process.env.FRONTEND || "http://localhost:3000"))
 
 const corsOptions = {
   "origin": "*",
+  "Access-Control-Allow-Origin": "*",
   "methods": "GET, POST, PUT",
   "preflightContinue": true,
   "optionsSuccessStatus": 204,
