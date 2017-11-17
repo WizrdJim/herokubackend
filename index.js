@@ -1,10 +1,31 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+const morgan = require('morgan');
+const routes = require('./routes');
+
+
+const app = express();
 var cool = require('cool-ascii-faces');
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 3007));
+app.set('frontend', (process.env.FRONTEND || "http://localhost:3000"))
+
+const corsOptions = {
+  "origin": app.get('frontend'),
+  "methods": "GET, POST, PUT",
+  "preflightContinue": true,
+  "optionsSuccessStatus": 204,
+  "credentials": true
+};
 
 app.use(express.static(__dirname + '/public'));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(cors(corsOptions));
+app.use(morgan('dev'));
+app.use('/', routes);
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
