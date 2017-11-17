@@ -13,7 +13,7 @@ app.set('port', (process.env.PORT || 3007));
 app.set('frontend', (process.env.FRONTEND || "http://localhost:3000"))
 
 const corsOptions = {
-  "origin": app.get('frontend'),
+  "origin": "*",
   "methods": "GET, POST, PUT",
   "preflightContinue": true,
   "optionsSuccessStatus": 204,
