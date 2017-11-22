@@ -26,7 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 app.use(morgan('dev'));
-app.use('/', routes);
+app.use('/api', routes);
 
 // views is directory for all template files
 app.set('views', __dirname + '/views');
